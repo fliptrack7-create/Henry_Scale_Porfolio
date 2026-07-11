@@ -151,6 +151,7 @@ main {
     height: 50%;
     background: linear-gradient(180deg, rgba(224, 74, 23, 0.95), rgba(224, 74, 23, 0.15));
     border-radius: 999px;
+    display: none !important;
 }
 
 .hero-left {
@@ -229,6 +230,11 @@ main {
     height: 48%;
     border-radius: 999px;
     background: linear-gradient(180deg, rgba(240, 74, 23, 1), rgba(224, 74, 23, 0.35));
+}
+
+/* Remove the image accent line on desktop as requested */
+.image-circle::before {
+    display: none !important;
 }
 
 .image-circle img {
