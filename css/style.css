@@ -134,17 +134,18 @@ main {
     width: 100%;
     min-height: calc(100vh - 100px);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.05fr 0.95fr;
     align-items: center;
-    gap: 80px;
-    padding: 120px 8% 90px;
+    gap: 70px;
+    padding: 110px 7% 80px;
     position: relative;
+    overflow: hidden;
 }
 
 .hero::after {
     content: '';
     position: absolute;
-    right: 8%;
+    right: 7%;
     top: 25%;
     width: 4px;
     height: 50%;
@@ -155,23 +156,31 @@ main {
 .hero-left {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .hero-right {
     max-width: 520px;
 }
 
+.hero-right p,
+.hero-right h2,
+.hero-right h1,
+.hero-right .eyebrow {
+    width: 100%;
+}
+
 .hero-right .eyebrow {
     color: var(--accent);
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
     font-weight: 700;
 }
 
 .hero-right h1 {
-    font-size: clamp(3.5rem, 4vw, 5.2rem);
-    line-height: 0.95;
+    font-size: clamp(3rem, 4vw, 4.5rem);
+    line-height: 1;
     margin: 0;
 }
 
@@ -180,31 +189,46 @@ main {
 }
 
 .hero-right h2 {
-    margin-top: 18px;
-    font-size: clamp(1.6rem, 2vw, 2.4rem);
+    margin-top: 16px;
+    font-size: clamp(1.5rem, 2vw, 2.2rem);
     color: #d7d7d7;
 }
 
 .hero-right p {
-    margin-top: 28px;
-    line-height: 1.8;
+    margin-top: 26px;
+    line-height: 1.85;
     font-size: 1rem;
     color: #b5b5b5;
-    max-width: 540px;
+    max-width: 520px;
 }
 
 .image-circle {
-    width: 520px;
-    height: 520px;
+    width: 380px;
+    height: 380px;
+    min-width: 260px;
+    min-height: 260px;
     border-radius: 50%;
+    overflow: visible;
     background: radial-gradient(circle at top, rgba(224, 74, 23, 0.45), transparent 35%),
         radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 40%),
         linear-gradient(180deg, #240909 0%, #050505 100%);
-    box-shadow: 0 0 140px rgba(224, 74, 23, 0.28);
+    box-shadow: 0 0 120px rgba(224, 74, 23, 0.28);
     display: grid;
     place-items: center;
     animation: float 6s ease-in-out infinite;
-    padding: 18px;
+    padding: 16px;
+    position: relative;
+}
+
+.image-circle::before {
+    content: '';
+    position: absolute;
+    top: 22%;
+    right: -10px;
+    width: 6px;
+    height: 48%;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(240, 74, 23, 1), rgba(224, 74, 23, 0.35));
 }
 
 .image-circle img {
@@ -214,6 +238,13 @@ main {
     object-fit: cover;
     border: 6px solid rgba(255, 255, 255, 0.08);
 }
+
+.image-circle .profile-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 
 @keyframes float {
     0%, 100% {
@@ -437,15 +468,32 @@ main {
 
 @media (max-width: 820px) {
     .navbar {
-        padding: 18px 6%;
+        padding: 16px 5%;
+    }
+
+    .logo {
+        font-size: 24px;
     }
 
     .nav-links {
         display: none;
     }
 
+    .btn {
+        padding: 12px 24px;
+    }
+
     .hero {
-        padding: 120px 6% 60px;
+        padding: 95px 6% 55px;
+    }
+
+    .hero::after {
+        display: none;
+    }
+
+    /* Hide the profile accent line on tablets/phones */
+    .image-circle::before {
+        display: none !important;
     }
 
     .section-head h2 {
@@ -466,15 +514,60 @@ main {
 
 @media (max-width: 600px) {
     .hero {
-        padding: 100px 5% 50px;
+        padding: 80px 5% 30px;
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 
-    .hero-left h1 {
-        font-size: 3.5rem;
+    .hero-left {
+        margin: 0 auto;
+        width: min(240px, 88vw);
+        order: 1;
     }
 
-    .hero-left h2 {
-        font-size: 1.8rem;
+    .hero-right {
+        max-width: 100%;
+        padding-top: 0;
+        order: 2;
+        text-align: center;
+    }
+    .image-circle::before {
+        display: none;
+    }
+
+    .hero-right h1 {
+        font-size: 1.9rem;
+    }
+
+    .hero-right h2 {
+        font-size: 1.3rem;
+    }
+
+    .hero-right p {
+        font-size: 0.9rem;
+    }
+
+    .hero-right .eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.7px;
+    }
+
+    .hero-right {
+        text-align: left;
+    }
+
+    .image-circle {
+        width: min(240px, 88vw);
+        height: min(240px, 88vw);
+        padding: 12px;
+    }
+
+    .image-circle::before {
+        top: 22%;
+        right: 10px;
+        width: 4px;
+        height: 40%;
     }
 
     .btn,
@@ -484,5 +577,6 @@ main {
 
     .hero-buttons {
         flex-direction: column;
+        gap: 16px;
     }
 }
