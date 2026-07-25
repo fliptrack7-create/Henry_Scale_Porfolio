@@ -32,17 +32,6 @@ a {
     color: inherit;
 }
 
-a:hover,
-a:focus-visible {
-    outline: none;
-}
-
-button:focus-visible,
-a:focus-visible {
-    outline: 2px solid rgba(255, 90, 31, 0.9);
-    outline-offset: 3px;
-}
-
 ul {
     list-style: none;
 }
@@ -146,35 +135,12 @@ main {
     width: 100%;
     min-height: calc(100vh - 100px);
     display: grid;
-    grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
+    grid-template-columns: 1.02fr 0.98fr;
     align-items: center;
-    gap: clamp(40px, 6vw, 84px);
+    gap: 70px;
     padding: 110px 7% 80px;
     position: relative;
     overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(255, 90, 31, 0.16), transparent 30%),
-        radial-gradient(circle at 85% 15%, rgba(255, 90, 31, 0.08), transparent 23%);
-    pointer-events: none;
-    z-index: -2;
-}
-
-.hero::after {
-    content: '';
-    position: absolute;
-    right: 8%;
-    bottom: 8%;
-    width: 280px;
-    height: 280px;
-    background: radial-gradient(circle, rgba(255, 90, 31, 0.08), transparent 70%);
-    filter: blur(24px);
-    pointer-events: none;
-    z-index: -1;
 }
 
 .hero-left {
@@ -182,35 +148,27 @@ main {
     justify-content: center;
 }
 
-.hero-copy {
+.hero-right {
     max-width: 620px;
 }
 
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border: 1px solid rgba(255, 90, 31, 0.28);
-    border-radius: 999px;
-    background: rgba(255, 90, 31, 0.08);
-    color: #ffac88;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+.hero-right .eyebrow {
+    color: var(--accent);
+    letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 0.85rem;
 }
 
-.hero-copy h1 {
-    font-size: clamp(2.5rem, 4.2vw, 4rem);
-    line-height: 1.03;
+.hero-right h1 {
+    font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+    line-height: 1.04;
     margin-bottom: 18px;
     color: white;
-    max-width: 640px;
 }
 
-.hero-copy p {
+.hero-right p {
     line-height: 1.8;
     font-size: 1rem;
     color: var(--muted);
@@ -220,124 +178,68 @@ main {
 .hero-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 16px;
     margin-top: 28px;
 }
 
-.hero-actions .btn {
-    min-width: 210px;
+.hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(90px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
 }
 
-.hero-actions .btn-outline {
-    background: rgba(255, 255, 255, 0.03);
+.metric-card {
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
 }
 
-.hero-trust-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 24px;
+.metric-card strong {
+    display: block;
+    font-size: 1.2rem;
+    color: white;
 }
 
-.hero-trust-row span {
-    padding: 10px 14px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.035);
-    color: #d8d8d8;
-    font-size: 0.92rem;
+.metric-card span {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.9rem;
+    color: var(--muted);
 }
 
-.hero-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.portrait-shell {
-    position: relative;
-    width: min(440px, 100%);
-    aspect-ratio: 1 / 1;
+.image-circle {
+    width: 380px;
+    height: 380px;
+    min-width: 260px;
+    min-height: 260px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: radial-gradient(circle at top, rgba(240, 74, 23, 0.45), transparent 34%),
+        linear-gradient(180deg, #220d0d 0%, #050505 100%);
+    box-shadow: 0 0 120px rgba(240, 74, 23, 0.2);
     display: grid;
     place-items: center;
+    animation: float 6s ease-in-out infinite;
+    padding: 16px;
 }
 
-.portrait-glow {
-    position: absolute;
-    inset: 8%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 90, 31, 0.24), transparent 70%);
-    filter: blur(22px);
-    z-index: 0;
-}
-
-.portrait-frame {
-    position: relative;
-    z-index: 1;
-    width: min(360px, 88%);
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    padding: 14px;
-    background: linear-gradient(145deg, rgba(255, 90, 31, 0.2), rgba(255, 255, 255, 0.03));
-    border: 1px solid rgba(255, 90, 31, 0.28);
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
-    animation: floatPortrait 6s ease-in-out infinite;
-}
-
-.portrait-frame img {
+.image-circle img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     border-radius: 50%;
+    object-fit: cover;
     border: 6px solid rgba(255, 255, 255, 0.08);
 }
 
-.floating-card {
-    position: absolute;
-    z-index: 2;
-    padding: 12px 14px;
-    border-radius: 999px;
-    background: rgba(10, 10, 10, 0.92);
-    border: 1px solid rgba(255, 90, 31, 0.25);
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 600;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
-    animation: floatCard 5s ease-in-out infinite;
-}
-
-.card-top {
-    top: 8%;
-    right: 6%;
-}
-
-.card-middle {
-    bottom: 18%;
-    left: 6%;
-    animation-delay: 1.2s;
-}
-
-.card-bottom {
-    bottom: 4%;
-    right: 16%;
-    animation-delay: 2.2s;
-}
-
-@keyframes floatPortrait {
+@keyframes float {
     0%, 100% {
         transform: translateY(0px);
     }
     50% {
-        transform: translateY(-14px);
-    }
-}
-
-@keyframes floatCard {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-8px);
+        transform: translateY(-16px);
     }
 }
 
@@ -580,20 +482,12 @@ main {
         width: 100%;
     }
 
-    .hero-copy {
+    .hero-right {
         margin: 0 auto;
     }
 
     .hero-actions {
         justify-content: center;
-    }
-
-    .hero-trust-row {
-        justify-content: center;
-    }
-
-    .portrait-shell {
-        width: min(360px, 90vw);
     }
 
     .about-grid,
@@ -646,12 +540,8 @@ main {
         gap: 24px;
     }
 
-    .hero-copy h1 {
-        font-size: 2rem;
-    }
-
-    .hero-copy p {
-        font-size: 0.92rem;
+    .hero-right {
+        text-align: left;
     }
 
     .hero-actions {
@@ -659,36 +549,31 @@ main {
         align-items: stretch;
     }
 
-    .hero-actions .btn {
+    .hero-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .image-circle {
+        width: min(240px, 88vw);
+        height: min(240px, 88vw);
+        padding: 12px;
+    }
+
+    .hero-right h1 {
+        font-size: 1.9rem;
+    }
+
+    .hero-right p {
+        font-size: 0.92rem;
+    }
+
+    .hero-right .eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 0.7px;
+    }
+
+    .btn,
+    .btn-outline {
         width: 100%;
-        min-width: 0;
-    }
-
-    .hero-trust-row {
-        justify-content: flex-start;
-    }
-
-    .portrait-shell {
-        width: min(300px, 90vw);
-    }
-
-    .floating-card {
-        font-size: 0.8rem;
-        padding: 10px 12px;
-    }
-
-    .card-top {
-        top: 10%;
-        right: 2%;
-    }
-
-    .card-middle {
-        left: 0;
-        bottom: 18%;
-    }
-
-    .card-bottom {
-        right: 6%;
-        bottom: 2%;
     }
 }
